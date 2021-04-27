@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Exceptions\Api\ApiNotFoundException;
 use App\Http\Controllers\Controller;
+use App\Http\Responses\JsonResponse;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        return (new JsonResponse([]));
     }
 
     /**

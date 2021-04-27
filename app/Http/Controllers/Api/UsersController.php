@@ -82,7 +82,7 @@ class UsersController extends Controller
             if(isset($formData['newpassword'])){
                 $password = $formData['newpassword'];
                 if ($password) {
-                    $formData['password'] = bcrypt($password);
+                    $formData['password'] = Hash::make($password);
                 }
             }
 

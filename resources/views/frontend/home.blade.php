@@ -1,8 +1,8 @@
 @extends('layouts.frontend')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container mt-4">
+    <div class="row">
 
     </div>
 </div>

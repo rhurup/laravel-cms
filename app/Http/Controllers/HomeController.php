@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the home.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -30,13 +30,16 @@ class HomeController extends Controller
 
         return view($default_view);
     }
+
     /**
-     * Show the application dashboard.
+     * Show the user dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function dashboard()
+    public function home()
     {
-        return view('frontend.dashboard');
+
+        return view("frontend.dashboard");
     }
+
 }

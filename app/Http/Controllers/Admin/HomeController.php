@@ -28,9 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::user() == null){
-            return redirect("/login", 301);
+            return redirect(route("admin.login"), 301);
         }else{
-            return redirect("/home", 301);
+            return redirect(route("admin.home"), 301);
         }
     }
     /**

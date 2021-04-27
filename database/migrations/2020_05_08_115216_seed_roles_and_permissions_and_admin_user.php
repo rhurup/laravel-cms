@@ -32,6 +32,11 @@ class SeedRolesAndPermissionsAndAdminUser extends Migration
         $AdminPermissions[] = ['group' => 'roles','key' => 'update','description' => 'Edit roles from administration'];
         $AdminPermissions[] = ['group' => 'roles','key' => 'browse','description' => 'Browse roles from administration'];
         $AdminPermissions[] = ['group' => 'roles','key' => 'delete','description' => 'Delete roles from administration'];
+        // Permissions
+        $AdminPermissions[] = ['group' => 'permissions','key' => 'create','description' => 'Create permissions from administration'];
+        $AdminPermissions[] = ['group' => 'permissions','key' => 'update','description' => 'Edit permissions from administration'];
+        $AdminPermissions[] = ['group' => 'permissions','key' => 'browse','description' => 'Browse permissions from administration'];
+        $AdminPermissions[] = ['group' => 'permissions','key' => 'delete','description' => 'Delete permissions from administration'];
         // Settings
         $AdminPermissions[] = ['group' => 'settings','key' => 'create','description' => 'Create settings from administration'];
         $AdminPermissions[] = ['group' => 'settings','key' => 'update','description' => 'Edit settings from administration'];

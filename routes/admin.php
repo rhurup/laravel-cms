@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Laravel\Socialite\Facades\Socialite;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,7 @@ Route::match(['get', 'post', 'option'], '/', 'HomeController@index')->name("admi
 
 Route::middleware(['auth'])->group(function () {
     Route::match(['get', 'post', 'option'], '/home', 'HomeController@home')->name("admin.home");
+
     Route::get( '/settings', 'SettingsController@index')->name("admin.index");
 
     Route::get('/users', 'UsersController@index')->name("admin.users");
@@ -23,6 +24,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/roles', 'RolesController@index')->name("admin.roles");
     Route::get('/roles/{id}', 'RolesController@show')->name("admin.roles_show");
+
+    Route::get('/permissions', 'PermissionsController@index')->name("admin.permissions");
+    Route::get('/permissions/{id}', 'PermissionsController@show')->name("admin.permissions_show");
 
     Route::get('/countries', 'CountriesController@index')->name("admin.countries");
     Route::get('/countries/{id}', 'CountriesController@show')->name("admin.countries_show");
@@ -36,4 +40,3 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/information', 'InformationController@index')->name("admin.information");
 
 });
-Auth::routes(['register' => false]);

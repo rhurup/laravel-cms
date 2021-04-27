@@ -22,6 +22,7 @@ Route::post('verify-email', 'AuthController@verifyEmail')->name("public.verify")
 Route::post('send-reset-password-link', 'AuthController@sendResetPasswordLink')->name("public.reset-password");
 Route::post('confirm-reset-password-link', 'AuthController@confirmResetPassword')->name("public.confirm-password");
 
+
 // Require Authentication for these endpoints
 Route::middleware(['auth:api'])->group(function () {
         Route::get('/logout', 'AuthController@logout')->name("auth.logout");
@@ -50,6 +51,15 @@ Route::middleware(['auth:api'])->group(function () {
                 $router->get('/{id}/permissions', 'RolesController@show_permissions')->name("auth.api_role_permissions_show");
                 $router->put('/{id}', 'RolesController@update')->name("auth.api_roles_update");
                 $router->delete('/{id}', 'RolesController@destroy')->name("auth.api_roles_delete");
+            }
+        );
+        Route::group(
+            ['prefix' => 'permissions'],
+            function ($router) {
+                $router->get('/', 'PermissionsController@index')->name("auth.api_permissions_index");
+                $router->post('/', 'PermissionsController@store')->name("auth.api_permissions_store");
+                $router->get('/{id}', 'PermissionsController@show')->name("auth.api_permissions_show");
+                $router->delete('/{id}', 'PermissionsController@destroy')->name("auth.api_permissions_delete");
             }
         );
         Route::group(

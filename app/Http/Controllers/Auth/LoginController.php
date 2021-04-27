@@ -36,11 +36,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->redirectTo = '/dashboard';
+        $this->redirectTo = '/home';
     }
 
     public function showLoginForm()
     {
-        return view('frontend.auth.login');
+        return view('auth.login');
     }
 }

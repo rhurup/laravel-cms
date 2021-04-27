@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapAuthRoutes();
+
         $this->mapAdminRoutes();
         $this->mapCustomAdminRoutes();
 
@@ -79,7 +81,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::domain(env("ADMIN_DOMAIN", 'admin.example.com'))
                  ->middleware(['web'])
                  ->namespace($this->namespace .'\Admin')
-                 ->group(base_path('routes/admin.php'));
+                 ->group(base_path('routes/custom_admin.php'));
         }
     }
 
@@ -148,6 +150,19 @@ class RouteServiceProvider extends ServiceProvider
                  ->middleware('api')
                  ->namespace($this->namespace . '\Api')
                  ->group(base_path('routes/custom_api.php'));
+        }
+    }
+    /**
+     * Define the auth routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapAuthRoutes()
+    {
+        if(file_exists(base_path('routes/auth.php'))) {
+            Route::middleware(['web','guest'])->group(base_path('routes/auth.php'));
         }
     }
 }

@@ -2,7 +2,7 @@
 
     <div class="sidebar-heading">
         @if(\App\Models\Settings\Settings::getValue("default.logo"))
-            <a href="/" class="logo-link text-light"><img src="{{\App\Models\Settings\Settings::getValue("default.logo")}}" class="d-block m-auto img-fluid"></a>
+            <a href="/" class="logo-link text-light"><img src="/{{\App\Models\Settings\Settings::getValue("default.logo")}}" class="d-block m-auto img-fluid"></a>
         @else
             <a href="/" class="logo-link text-light">{{ config("app.name") }}</a>
         @endif
@@ -13,7 +13,7 @@
             <a href="#settings" onclick="" class="list-group-item @if(Request::segment(1) == 'settings') active @endif" data-toggle="collapse" aria-expanded="false">
                 <i class="fas menuicon fa-cog"></i>{{__("generic.settings")}}
             </a>
-            <div class="list-group collapse @if(in_array(Request::segment(1), ['settings', 'countries','countries','languages','timezones','users','roles','information'])) show @endif" id="settings">
+            <div class="list-group collapse @if(in_array(Request::segment(1), ['settings', 'countries','countries','languages','timezones','users','roles','information', 'permissions'])) show @endif" id="settings">
                 @if(Auth::user()->hasPermission("browse", "countries"))
                     <a href="/countries" class="list-group-item @if(Request::segment(1) == 'countries') active @endif">
                         <i class="fas menuicon fa-globe"></i>{{__("generic.countries")}}
@@ -37,6 +37,11 @@
                 @if(Auth::user()->hasPermission("browse", "roles"))
                     <a href="/roles" class="list-group-item @if(Request::segment(1) == 'roles') active @endif">
                         <i class="fas menuicon fa-lock"></i>{{__("generic.roles")}}
+                    </a>
+                @endif
+                @if(Auth::user()->hasPermission("browse", "permissions"))
+                    <a href="/permissions" class="list-group-item @if(Request::segment(1) == 'permissions') active @endif">
+                        <i class="fas menuicon fa-lock"></i>{{__("generic.permissions")}}
                     </a>
                 @endif
                 @if(Auth::user()->hasPermission("browse", "settings"))

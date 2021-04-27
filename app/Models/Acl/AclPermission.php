@@ -4,9 +4,12 @@ namespace App\Models\Acl;
 
 use App\Models\BaseModel;
 use App\Models\Users\User;
+use App\Traits\DataTables;
 
 class AclPermission extends BaseModel
 {
+    use DataTables;
+
     /**
      * Table name
      *

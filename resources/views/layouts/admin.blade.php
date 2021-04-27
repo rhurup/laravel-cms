@@ -8,11 +8,9 @@
     <title>{{config('app.name', 'Laravel')}}</title>
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="{{ env("ADMIN_URL").'/css/admin.css' }}" rel="stylesheet">
-    <link href="{{ env("ADMIN_URL").'/css/animate.css' }}" rel="stylesheet">
     <link href="{{ env("ADMIN_URL").'/dist/daterangepicker.css' }}" rel="stylesheet">
-    <link href="{{ env("ADMIN_URL").'/dist/datatables.min.css' }}" rel="stylesheet">
     <link href="{{ env("ADMIN_URL").'/vendor/font-awesome/css/all.min.css' }}" rel="stylesheet">
+    <link href="{{ env("ADMIN_URL").'/css/admin.css' }}" rel="stylesheet">
     <link href="{{ env("ADMIN_URL").'/css/custom_admin.css' }}" rel="stylesheet">
     @stack('css')
 </head>
@@ -36,9 +34,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item" href="#"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
                         </div>
@@ -50,7 +47,7 @@
                     </li>
                 </ul>
             </div>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         </nav>
@@ -67,22 +64,21 @@
     </div>
 </div>
 <!-- Bootstrap core JavaScript -->
-<script src="{{ env("ADMIN_URL").'/vendor/jquery/jquery.min.js' }}"></script>
-<script src="{{ env("ADMIN_URL").'/vendor/bootstrap/js/bootstrap.bundle.min.js' }}"></script>
+<script src="{{ env("ADMIN_URL").'/js/admin.js' }}"></script>
+<script src="{{ env("ADMIN_URL").'/js/custom_admin.js' }}"></script>
 <script src="{{ env("ADMIN_URL").'/dist/moment.min.js' }}"></script>
 <script src="{{ env("ADMIN_URL").'/dist/daterangepicker.js' }}"></script>
 <script src="{{ env("ADMIN_URL").'/dist/datatables.min.js' }}"></script>
 <script type="application/javascript">
     let token = document.head.querySelector('meta[name="csrf-token"]');
-    var restUrl = '<?php echo e(env("API_URL")); ?>';
-    var restUserId = <?php echo e(Auth::user()->id); ?>;
+    var restUrl = '{{ e(env("API_URL")) }}';
+    var restUserId = {{ e(Auth::user()->id) }};
     var restHeader = {
         "Accept": "application/json",
-        "Authorization": "Bearer <?php echo e(Auth::user()->api_token); ?>"
+        "Authorization": "Bearer {{  e( Auth::user()->api_token ) }}"
     };
-    var restToken = "<?php echo e(Auth::user()->api_token); ?>";
+    var restToken = "{{  e( Auth::user()->api_token ) }}";
 </script>
-<script src="{{ env("ADMIN_URL").'/js/admin.js' }}"></script>
 <script src="{{ env("ADMIN_URL").'/js/custom_admin.js' }}"></script>
 <script src="{{ env("ADMIN_URL").'/js/bootstrap-notify.min.js' }}"></script>
 @stack('scripts')

@@ -10,6 +10,7 @@ use App\Traits\ModelHelpers;
 use App\Traits\UserAccess;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -57,8 +58,12 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        'avatar' => 'images/avatar_default.png'
+        'api_token' => "",
+        'avatar' => 'images/avatar_default.png',
+        'timezone_id' => 161,
+        'language_id' => 436,
     ];
+
 
     public function ResetPassword(){
         return $this->hasOne(UserResetPassword::class, 'email', 'email');
@@ -71,7 +76,7 @@ class User extends Authenticatable
 
     public function language()
     {
-
         return $this->hasOne(CountriesLanguages::class, 'id', 'language_id');
     }
+
 }

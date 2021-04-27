@@ -13,13 +13,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-5 transparent">
-            <h3 class="text-center mb-4 mt-4">{{ __('Login with') }}</h3>
-            <div class="row">
-                <div class="col-4"><img src="images/github-logo.png" class="img-fluid"></div>
-                <div class="col-4"><img src="images/facebook-logo.png" class="img-fluid"></div>
-                <div class="col-4"><img src="images/google-logo.png" class="img-fluid"></div>
-            </div>
-            <h3 class="text-center mb-4 mt-4">{{ __('Or') }}</h3>
+            <h3 class="text-center mb-4 mt-4">{{ __('Login') }}</h3>
             <form method="POST" action="{{ url('/login') }}" class="align-middle">
                 @csrf
                 <div class="form-group row">

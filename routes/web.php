@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,11 +11,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('web_home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', 'HomeController@dashboard')->name('web_dashboard');
+    Route::get('/home', 'HomeController@home')->name('web_dashboard');
 });
 
-Auth::routes();
+
